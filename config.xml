@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>googleCustomerReviewsSnippet</name>
+	<displayName><![CDATA[Google Customer Reviews Snippet]]></displayName>
+	<version><![CDATA[0.1.0]]></version>
+	<description><![CDATA[This modules adds the Google Customer Reviews snippet in the order confirmation page.]]></description>
+	<author><![CDATA[Traxlead]]></author>
+	<tab><![CDATA[seo]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+</module>
