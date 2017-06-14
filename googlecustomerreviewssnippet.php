@@ -201,14 +201,17 @@ class GoogleCustomerReviewsSnippet extends Module
 		$orderId = Tools::getValue('id_order');
 		// Get the Order object
 		$order = new Order($orderId);
+
+		// If order isn't successful
+		if ($order->current_state != _PS_OS_PAYMENT_)
+			return false;
+
 		// Get the Customer object
 		$customer = new Customer($order->id_customer);
 		// Get the Address object
 		$address = new Address($order->id_address_delivery);
 		// Get the Country object
 		$country = new Country($address->id_country);
-
-		
 		
 		$this->context->smarty->assign(array(
 				'merchant_id'             => Configuration::get('GCRS_MERCHANT_ID'),
@@ -222,7 +225,21 @@ class GoogleCustomerReviewsSnippet extends Module
 		$this->computeDeliveryDate();
 
 		$view = $this->context->smarty->fetch($this->local_path . 'views/templates/front/customer_reviews_snippet.tpl');
+
+		$this->logCustomers($view);
+
 		return $view;
+	}
+
+
+        private function logCustomers($data)
+        {
+                $now = new DateTime();
+
+                $output = "==========" . $now->format('Y-m-d H:i:s') . "==========\n";
+		$output.= $data . "\n";		
+
+		file_put_contents($this->local_path . 'log.txt', $output, FILE_APPEND);
 	}
 
 	private function computeDeliveryDate()
