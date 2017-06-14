@@ -1,4 +1,4 @@
-<script src="https://apis.google.com/js/platform.js?onload=renderOptIn" data-keepinline="true" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=renderOptIn" async defer></script>
 
 <script data-keepinline="true">
 	window.renderOptIn = function() {
